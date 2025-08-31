@@ -264,6 +264,9 @@ eval "$(register-python-argcomplete pipx)"
 # Jupyter pipx installation
 export PATH=$PATH:/home/dboj/.local/share/pipx/venvs/notebook/bin
 
+# NVM for managing node versions
+# source /usr/share/nvm/init-nvm.sh
+
 # Welcome message
 fastfetch
 echo "Welcome to the Matrix, Neo!"
@@ -271,3 +274,8 @@ echo "Welcome to the Matrix, Neo!"
 # Tmux initializer
 /home/dboj/workspace/bash-scripts/init-tmux.sh
 
+# SSH-Agent init
+echo "Recharging SSH Keys:"
+[ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent -s)" > /dev/null
+ssh-add /home/dboj/.ssh/id_ansible
+ssh-add /home/dboj/.ssh/id_ed25519
