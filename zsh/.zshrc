@@ -274,7 +274,7 @@ echo "Welcome to the Matrix, Neo!"
 # Tmux initializer
 /home/dboj/workspace/bash-scripts/init-tmux.sh
 
-# SSH-Agent init
+# SSH-Agent init: REVISAR EN CADA HOST NUEVO
 echo "Recharging SSH Keys:"
 [ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent -s)" > /dev/null
 ssh-add /home/dboj/.ssh/id_ansible
