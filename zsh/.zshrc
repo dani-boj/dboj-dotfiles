@@ -276,6 +276,14 @@ echo "Welcome to the Matrix, Neo!"
 
 # SSH-Agent init: REVISAR EN CADA HOST NUEVO
 echo "Recharging SSH Keys:"
-[ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent -s)" > /dev/null
-ssh-add /home/dboj/.ssh/id_ansible
-ssh-add /home/dboj/.ssh/id_ed25519
+#[ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent -s)" > /dev/null
+if [ ! -S ~/.ssh/ssh_auth_sock ]; then
+  eval `ssh-agent` > /dev/null
+  ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+fi
+
+export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+ssh-add -l > /dev/null || {
+  ssh-add /home/dboj/.ssh/id_ansible 
+  ssh-add /home/dboj/.ssh/id_ed25519
+}
