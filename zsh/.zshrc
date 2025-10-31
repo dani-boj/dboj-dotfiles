@@ -142,7 +142,7 @@ zstyle ':omz:update' mode auto      # update automatically without asking
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
+  export EDITOR='nvim'
 else
   export EDITOR='nvim'
 fi
@@ -174,6 +174,7 @@ alias zshconfig="nvim ~/.zshrc"
 alias la="ls -la"
 alias cd="z"
 alias vim-s="nvim --listen /tmp/nvimsocket"
+alias vim="nvim"
 
 # Execute VPN connection script
 alias wdon="sudo pon wdreams && sleep 3 && sudo ip route add default via 172.16.0.100 dev ppp0"
@@ -269,7 +270,6 @@ export PATH=$PATH:/home/dboj/.local/share/pipx/venvs/notebook/bin
 
 # Welcome message
 fastfetch
-echo "Welcome to the Matrix, Neo!"
 
 # Tmux initializer
 /home/dboj/workspace/bash-scripts/init-tmux.sh
@@ -287,3 +287,5 @@ ssh-add -l > /dev/null || {
   ssh-add /home/dboj/.ssh/id_ansible 
   ssh-add /home/dboj/.ssh/id_ed25519
 }
+
+echo "Welcome to the Matrix, Neo!"

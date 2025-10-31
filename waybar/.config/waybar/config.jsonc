@@ -125,6 +125,14 @@
     "format": "<span size='13000' foreground='#f5e0dc'>{short}</span>",
     "on-click": "hyprctl switchxkblayout keyboard-v1 next"
   },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    },
+  "timeout": 30.5
+},
   "custom/power": {
     "format":" ",
     "on-click":"wlogout --protocol layer-shell" 
