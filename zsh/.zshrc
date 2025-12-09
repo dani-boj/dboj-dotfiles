@@ -177,15 +177,15 @@ alias vim-s="nvim --listen /tmp/nvimsocket"
 alias vim="nvim"
 
 # Execute VPN connection script
-alias wdon="sudo pon wdreams && sleep 3 && sudo ip route add default via 172.16.0.100 dev ppp0"
-alias wdoff="sudo poff wdreams"
+alias wdon="doas pon wdreams && sleep 5 && doas ip route add default via 172.16.0.100 dev ppp0"
+alias wdmnt="doas pon wdreams && sleep 5 && doas ip route add default via 172.16.0.100 dev ppp0 && doas mount -aT /etc/fstab.d/sistemas"
 
 # Pacman update and cleaning
-alias pacup="sudo pacman -Syu --noconfirm && sudo pacman -Sc --noconfirm && sudo pacman -Scc --noconfirm"
+alias pacup="doas pacman -Syu --noconfirm && doas pacman -Sc --noconfirm && doas pacman -Scc --noconfirm"
 alias yayup="yay -Syu --noconfirm && yay -Sc --noconfirm && yay -Scc --noconfirm"
 
 # Mount units whhen at office VPN
-alias mnt-ryc="sudo mount -aT /home/dboj/Network/mount_tabs/sistemas"
+alias mnt-ryc="doas mount -aT /home/dboj/Network/mount_tabs/sistemas"
 
 # Warp-Cli Modes
 alias warp="warp-cli mode warp+doh"
@@ -289,3 +289,5 @@ ssh-add -l > /dev/null || {
 }
 
 echo "Welcome to the Matrix, Neo!"
+export SDKMAN_DIR="/home/dboj/.sdkman"
+[[ -s "/home/dboj/.sdkman/bin/sdkman-init.sh" ]] && source "/home/dboj/.sdkman/bin/sdkman-init.sh"
