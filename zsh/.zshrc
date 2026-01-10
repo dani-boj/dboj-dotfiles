@@ -181,8 +181,8 @@ alias wdon="doas pon wdreams && sleep 5 && doas ip route add default via 172.16.
 alias wdmnt="doas pon wdreams && sleep 5 && doas ip route add default via 172.16.0.100 dev ppp0 && doas mount -aT /etc/fstab.d/sistemas"
 
 # Pacman update and cleaning
-alias pacup="doas pacman -Syu --noconfirm && doas pacman -Sc --noconfirm && doas pacman -Scc --noconfirm"
-alias yayup="yay -Syu --noconfirm && yay -Sc --noconfirm && yay -Scc --noconfirm"
+alias pacup="doas pacman -Syu --noconfirm && doas paccache -rk 2 && doas paccache -ruk1 && doas pacman -Scc --noconfirm"
+alias yayup="yay -Syu --noconfirm && paccache -rk2 -c ~/.cache/yay/*/ && paccache -ruk0 ~/.cache/yay/*/"
 
 # Mount units whhen at office VPN
 alias mnt-ryc="doas mount -aT /home/dboj/Network/mount_tabs/sistemas"
@@ -277,12 +277,12 @@ fastfetch
 # SSH-Agent init: REVISAR EN CADA HOST NUEVO
 echo "Recharging SSH Keys:"
 #[ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent -s)" > /dev/null
+export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
 if [ ! -S ~/.ssh/ssh_auth_sock ]; then
   eval `ssh-agent` > /dev/null
   ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
 fi
 
-export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
 ssh-add -l > /dev/null || {
   ssh-add /home/dboj/.ssh/id_ansible 
   ssh-add /home/dboj/.ssh/id_ed25519
