@@ -171,14 +171,15 @@ export MPD_HOST=/home/dboj/.config/mpd/socket
 
 # Custom alias
 alias zshconfig="nvim ~/.zshrc"
-alias la="ls -la"
+alias la="ls -lah"
 alias cd="z"
 alias vim-s="nvim --listen /tmp/nvimsocket"
 alias vim="nvim"
 
 # Execute VPN connection script
 alias wdon="doas pon wdreams && sleep 5 && doas ip route add default via 172.16.0.100 dev ppp0"
-alias wdmnt="doas pon wdreams && sleep 5 && doas ip route add default via 172.16.0.100 dev ppp0 && doas mount -aT /etc/fstab.d/sistemas"
+alias wdmnt="doas swanctl --initiate --child fortigate-child && sleep 5 && doas mount -avT /etc/fstab.d/sistemas"
+alias wdoff="doas umount -v /home/dboj/Network/wdreams/* && sleep 1 && doas swanctl --terminate --ike fortigate"
 
 # Pacman update and cleaning
 alias pacup="doas pacman -Syu --noconfirm && doas paccache -rk 2 && doas paccache -ruk1 && doas pacman -Scc --noconfirm"
@@ -190,6 +191,10 @@ alias mnt-ryc="doas mount -aT /home/dboj/Network/mount_tabs/sistemas"
 # Warp-Cli Modes
 alias warp="warp-cli mode warp+doh"
 alias doh="warp-cli mode doh"
+
+# Avoid egrep & fgrep warnings
+alias egrep='grep -E'
+alias fgrep='grep -F'
 
 # Custom PATHs
 # Kanata in Cargo 
@@ -205,6 +210,8 @@ export JAVA_HOME=/usr/lib/jvm/jre-23-openjdk/
 export PATH=$PATH:$JAVA_HOME/bin
 # Tmuxifier
 export PATH="$HOME/.tmuxifier/bin:$PATH"
+# Cargo
+export PATH="$HOME/.cargo/bin:$PATH"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
